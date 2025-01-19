@@ -1,6 +1,6 @@
 // const Task = require('./task.js');
 const prompt = require('prompt-sync')();
-
+// import  fs from 'fs';
 // add_task() - Pridat úlohy do seznamu.
 // list_task() - Zobrazit vsechny úlohy.
 // mark_task_done() - Oznacit úlohy jako dokoncené.
@@ -139,4 +139,17 @@ let tasks = [];
 let appRun = true;
 while (appRun) {
     appRun = menu();
+}
+const writeToFilePath = "output.txt"
+
+function writeToFile(filePath, data) {
+    let formattedData = JSON.stringify(menu);
+
+    fs.writeFile(filePath, formattedData, "utf8", (err) => {
+        if (err) {
+            console.error("Chyba pri zapisovani do souboru:", err);
+            return;
+        }
+        console.log(`Úspesné zapsané do souboru: ${filePath} `);
+    })
 }
